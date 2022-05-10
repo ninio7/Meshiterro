@@ -15,22 +15,8 @@
           <% if @post_image.user == current_user %>
             <%= link_to "削除", post_image_path(@post_image), method: :deleteclass, class:"btn btn-danger pull-right" %>
           <% end %>
-          <% if @post_image.favorited_by?(current_user) %>
-            <span>
-              <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
-                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                <%= @post_image.favorites.count %> いいね
-              <% end %>
-            </span>
-          <% else %>
-            <span>
-              <%= link_to post_image_favorites_path(@post_image), method: :post do %>
-                <i class="fas fa-heart" aria-hidden="true"></i>
-                <%= @post_image.favorites.count %> いいね
-               <% end %>
-            </span>
-          <% end %>
-          <p><%= render "relationships/btn", user: @user %><p>
+          <p id= "post_image_<%= @post_image.id %>"><%= render "favorites/btn", post_image: @post_image %></p>
+         <p id= "user_<%= @user.id %>"><%= render "relationships/btn", user: @user %></p>
        </div>
       </div>
     </div>
